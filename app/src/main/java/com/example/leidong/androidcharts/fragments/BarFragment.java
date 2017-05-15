@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.leidong.androidcharts.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -26,7 +25,9 @@ import java.util.ArrayList;
 public class BarFragment extends Fragment {
     private BarChart barChart;
     private BarData barData;
+    //X轴数据
     private ArrayList<String> xDatas = new ArrayList<>();
+    //Y轴数据
     private ArrayList<BarEntry> yDatas = new ArrayList<>();
 
     @Override
@@ -55,33 +56,34 @@ public class BarFragment extends Fragment {
      * @param barData
      */
     private void showBarChart(BarChart barChart, BarData barData) {
-        barChart.setDrawBorders(false);
-        barChart.setDescription(null);
+        barChart.setDrawBorders(false);//不画边框
+        barChart.setDescription("一组数据的柱状图");//Description内容
         barChart.setNoDataText("数据为空，请传入数据！！！");
-        barChart.setDrawGridBackground(false);
-        barChart.setTouchEnabled(true);
-        barChart.setDragEnabled(true);
-        barChart.setScaleEnabled(true);
-        barChart.setPinchZoom(false);
+        barChart.setDrawGridBackground(false);//不画网格背景
+        barChart.setTouchEnabled(true);//允许触摸
+        barChart.setDragEnabled(true);//允许拖拽
+        barChart.setScaleEnabled(true);//允许缩放
+        barChart.setPinchZoom(false);//false，X、Y轴单独缩放
 
+        //配置图例
         Legend legend = barChart.getLegend();
-        legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setFormSize(14);
-        legend.setTextSize(14);
-        legend.setPosition(Legend.LegendPosition.ABOVE_CHART_CENTER);
+        legend.setForm(Legend.LegendForm.CIRCLE);//图例颜色块形状
+        legend.setFormSize(14);//颜色快大小
+        legend.setTextSize(14);//图例字体
+        legend.setPosition(Legend.LegendPosition.ABOVE_CHART_CENTER);//图例位置
 
         XAxis xAxis = barChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//X轴位置
 
         YAxis yAxisRight = barChart.getAxisRight();
-        yAxisRight.setEnabled(false);
+        yAxisRight.setEnabled(false);//禁用右侧Y轴
 
-        barChart.animateXY(1000, 1000);
+        barChart.animateXY(1000, 1000);//设置动画，X轴1秒，Y轴1秒
 
-        barData.setValueTextSize(12);
-        barData.setValueTextColor(Color.RED);
+        barData.setValueTextSize(12);//BarData字体
+        barData.setValueTextColor(Color.RED);//BarData颜色
 
-        barChart.setData(barData);
+        barChart.setData(barData);//填充数据
     }
 
     @Override
@@ -95,12 +97,12 @@ public class BarFragment extends Fragment {
      */
     public BarData getBarData() {
         BarDataSet barDataSet = new BarDataSet(yDatas, "Y轴数据");
-        barDataSet.setColor(Color.GREEN);
+        barDataSet.setColor(Color.GREEN);//设置柱子颜色
 
         ArrayList<IBarDataSet> barDataSets = new ArrayList<>();
         barDataSets.add(barDataSet);
 
-        BarData barData = new BarData(xDatas, barDataSets);
+        BarData barData = new BarData(xDatas, barDataSets);//填充BarData
         return barData;
     }
 }

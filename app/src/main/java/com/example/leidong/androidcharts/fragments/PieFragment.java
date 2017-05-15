@@ -26,7 +26,9 @@ import java.util.ArrayList;
 public class PieFragment extends Fragment {
     private PieChart pieChart;
     private PieData pieData;
+    //X轴数据
     private ArrayList<String> names = new ArrayList<>();
+    //Y轴数据
     private ArrayList<Entry> counts = new ArrayList<>();
 
     @Override
@@ -41,11 +43,11 @@ public class PieFragment extends Fragment {
         names.add("丐帮");
         names.add("神威");
 
-        counts.add(new Entry(2,0));
+        counts.add(new Entry(12,0));
         counts.add(new Entry(4, 1));
         counts.add(new Entry(8, 2));
         counts.add(new Entry(16, 3));
-        counts.add(new Entry(32, 4));
+        counts.add(new Entry(22, 4));
         counts.add(new Entry(18, 5));
         counts.add(new Entry(9, 6));
         counts.add(new Entry(11, 7));
@@ -74,8 +76,7 @@ public class PieFragment extends Fragment {
      */
     private void showPieChart(PieChart pieChart, PieData pieData) {
         pieChart.setData(pieData);
-        pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
-        pieChart.invalidate();
+        pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);//设置显示动画，转一圈
     }
 
 
@@ -85,30 +86,33 @@ public class PieFragment extends Fragment {
      */
     public PieData getPieData() {
         //Configure pie chart
-        pieChart.setUsePercentValues(true);
-        pieChart.setDescription(null);
+        pieChart.setUsePercentValues(true);//显示百分比格式
+        pieChart.setDescription("饼图");//Description内容
+        pieChart.setDescriptionPosition(750, 70);//Description位置
+        pieChart.setDescriptionTextSize(40);//Description字体
 
-        //Enable hole
-        pieChart.setDrawHoleEnabled(true);
-        pieChart.setHoleColor(Color.TRANSPARENT);
-        pieChart.setHoleRadius(20);
-        pieChart.setTransparentCircleRadius(23);
-        pieChart.setCenterText("八荒门派");
+        //饼图中间的小圆配置
+        pieChart.setDrawHoleEnabled(true);//允许饼图中间有小圆
+        pieChart.setHoleColor(Color.TRANSPARENT);//饼图中间小圆透明
+        pieChart.setHoleRadius(20);//中间小圆的半径
+        pieChart.setTransparentCircleRadius(23);//这个自己试，是中间小圆套着的外面一层圆
+        pieChart.setCenterText("八荒门派");//中间文字
 
-        //Enable rotation of the chart by touch
+        //允许旋转
         pieChart.setRotationEnabled(true);
         pieChart.setRotationAngle(0);
 
+        //配置图例
         Legend legend = pieChart.getLegend();
-        legend.setPosition(Legend.LegendPosition.ABOVE_CHART_CENTER);
-        legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setTextSize(12);
+        legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART_INSIDE);//图例位置
+        legend.setForm(Legend.LegendForm.CIRCLE);//设置图例颜色块形状
+        legend.setTextSize(12);//设置图例字体
 
-        PieDataSet pieDataSet = new PieDataSet(counts, "各门派玩家数目占比");
-        pieDataSet.setSliceSpace(3);
-        pieDataSet.setSelectionShift(15);
+        PieDataSet pieDataSet = new PieDataSet(counts, "");
+        pieDataSet.setSliceSpace(3);//扇形间距
+        pieDataSet.setSelectionShift(15);//设置点击突出距离
 
-        //Add many colors
+        //添加颜色
         ArrayList<Integer> cs = new ArrayList<>();
         for (int c : ColorTemplate.VORDIPLOM_COLORS) {
             cs.add(c);
@@ -130,9 +134,9 @@ public class PieFragment extends Fragment {
 
         PieData pieData = new PieData(names, pieDataSet);
         pieData.setValueFormatter(new PercentFormatter());
-        pieData.setValueTextSize(14f);
-        pieData.setValueTextColor(Color.BLACK);
-        pieData.setHighlightEnabled(true);
+        pieData.setValueTextSize(14f);//PieData字体
+        pieData.setValueTextColor(Color.BLACK);//PieData字体颜色
+        pieData.setHighlightEnabled(true);//高亮显示
         return pieData;
     }
 }

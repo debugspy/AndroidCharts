@@ -23,7 +23,9 @@ import java.util.ArrayList;
 public class LineFragment extends Fragment {
     private LineChart lineChart;
     private LineData lineData;
+    //X轴数据
     private ArrayList<String> xDatas = new ArrayList<>();
+    //Y轴数据
     private ArrayList<Entry> yDatas = new ArrayList<>();
 
     @Override
@@ -52,28 +54,28 @@ public class LineFragment extends Fragment {
      * @param lineData
      */
     private void showLineChart(LineChart lineChart, LineData lineData) {
-        lineChart.setDoubleTapToZoomEnabled(false);
-        lineChart.setPinchZoom(false);
-        lineChart.setDrawBorders(false);
-        lineChart.setScaleEnabled(false);
-        lineChart.setDrawGridBackground(false);
-        lineChart.setDescription("折线图");
-        lineChart.setDescriptionPosition(750, 70);
-        lineChart.setDescriptionTextSize(40);
-        lineChart.animateXY(1000, 1000);
+        lineChart.setDoubleTapToZoomEnabled(false);//禁止双击放大
+        lineChart.setDrawBorders(false);//不画边界
+        lineChart.setScaleEnabled(false);//禁止缩放
+        lineChart.setDrawGridBackground(false);//不画网格背景
+        lineChart.setDescription("折线图");//Description内容
+        lineChart.setDescriptionPosition(750, 70);//Description位置
+        lineChart.setDescriptionTextSize(40);//Description字体
+        lineChart.animateXY(1000, 1000);//动画，X轴1秒，Y轴1秒
 
         YAxis yAxisRight = lineChart.getAxisRight();
-        yAxisRight.setEnabled(false);
+        yAxisRight.setEnabled(false);//禁用Y轴右边
 
         XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextSize(12);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//X轴放置位置
+        xAxis.setTextSize(12);//设置X轴字体
 
+        //图例配置
         Legend legend = lineChart.getLegend();
-        legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART_INSIDE);
-        legend.setForm(Legend.LegendForm.CIRCLE);
+        legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART_INSIDE);//图例位置
+        legend.setForm(Legend.LegendForm.CIRCLE);//图例颜色块形状
 
-        lineChart.setData(lineData);
+        lineChart.setData(lineData);//填充数据
     }
 
     /**
@@ -82,11 +84,11 @@ public class LineFragment extends Fragment {
      */
     public LineData getLineData() {
         LineDataSet lineDataSet = new LineDataSet(yDatas, "");
-        lineDataSet.setColor(Color.BLUE);
-        lineDataSet.setDrawCircleHole(true);
-        lineDataSet.setCircleRadius(4);
-        lineDataSet.setCircleColor(Color.RED);
-        lineDataSet.setLineWidth(2);
+        lineDataSet.setColor(Color.BLUE);//设置折线练习按颜色
+        lineDataSet.setDrawCircleHole(true);//设置数据点圆形显示
+        lineDataSet.setCircleRadius(4);//数据点半径
+        lineDataSet.setCircleColor(Color.RED);//数据点颜色
+        lineDataSet.setLineWidth(2);//设置支线线宽
 
         LineData lineData = new LineData(xDatas, lineDataSet);
         lineData.setValueTextSize(12);
