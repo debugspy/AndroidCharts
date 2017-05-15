@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.leidong.androidcharts.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -15,7 +14,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-
 import java.util.ArrayList;
 
 /**
@@ -31,7 +29,7 @@ public class LineFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 20; i++){
             xDatas.add("第"+(i+1)+"天");
             yDatas.add(new Entry((float) (Math.random()*1000), i));
         }
@@ -62,6 +60,7 @@ public class LineFragment extends Fragment {
         lineChart.setDescription("折线图");
         lineChart.setDescriptionPosition(750, 70);
         lineChart.setDescriptionTextSize(40);
+        lineChart.animateXY(1000, 1000);
 
         YAxis yAxisRight = lineChart.getAxisRight();
         yAxisRight.setEnabled(false);
