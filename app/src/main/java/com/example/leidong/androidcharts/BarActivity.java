@@ -1,9 +1,13 @@
 package com.example.leidong.androidcharts;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import com.example.leidong.androidcharts.fragments.BarFragment;
+import com.example.leidong.androidcharts.fragments.MultiBarFragment;
 
 /**
  * Created by leidong on 2017/5/12.
@@ -43,27 +47,21 @@ public class BarActivity extends AppCompatActivity implements View.OnClickListen
      */
     @Override
     public void onClick(View v) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
         switch (v.getId()){
             case R.id.button1:
-                clickButton1();
+                BarFragment barFragment = new BarFragment();
+                transaction.replace(R.id.barchart, barFragment);
+                transaction.commit();
                 break;
             case R.id.button2:
-                clickButton2();
+                MultiBarFragment multiBarFragment = new MultiBarFragment();
+                transaction.replace(R.id.barchart, multiBarFragment);
+                transaction.commit();
                 break;
             default:
                 break;
         }
-    }
-
-    /**
-     * 点击按钮1
-     */
-    private void clickButton1() {
-    }
-
-    /**
-     * 点击按钮2
-     */
-    private void clickButton2() {
     }
 }
