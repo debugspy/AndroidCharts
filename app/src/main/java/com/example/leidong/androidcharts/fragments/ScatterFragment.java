@@ -65,6 +65,7 @@ public class ScatterFragment extends Fragment{
         scatterChart.setDescriptionTextSize(40);
         scatterChart.setDescriptionPosition(759, 70);
         scatterChart.setDrawGridBackground(false);
+        scatterChart.getAxisLeft().setAxisMinValue(0.0f);
 
         XAxis xAxis = scatterChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);

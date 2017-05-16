@@ -62,6 +62,7 @@ public class LineFragment extends Fragment {
         lineChart.setDescriptionPosition(750, 70);//Description位置
         lineChart.setDescriptionTextSize(40);//Description字体
         lineChart.animateXY(1000, 1000);//动画，X轴1秒，Y轴1秒
+        lineChart.getAxisLeft().setAxisMinValue(0.0f);
 
         YAxis yAxisRight = lineChart.getAxisRight();
         yAxisRight.setEnabled(false);//禁用Y轴右边

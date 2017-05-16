@@ -75,6 +75,7 @@ public class MultiBarFragment extends Fragment{
         barChart.fitScreen();//适应屏幕
         barData.setValueTextSize(12);//柱子上的字体大小
         barData.setValueTextColor(Color.BLUE);//柱子上的字的颜色
+        barChart.getAxisLeft().setAxisMinValue(0.0f);
 
         //图例配置
         Legend legend = barChart.getLegend();

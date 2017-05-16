@@ -65,6 +65,7 @@ public class BubbleFragment extends Fragment{
         bubbleChart.setPinchZoom(false);
         bubbleChart.setDescriptionTextSize(40);
         bubbleChart.animateXY(1000, 1000);
+        bubbleChart.getAxisLeft().setAxisMinValue(0.0f);
 
         XAxis xAxis = bubbleChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);

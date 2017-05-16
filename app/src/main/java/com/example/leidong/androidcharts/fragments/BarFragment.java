@@ -58,19 +58,22 @@ public class BarFragment extends Fragment {
     private void showBarChart(BarChart barChart, BarData barData) {
         barChart.setDrawBorders(false);//不画边框
         barChart.setDescription("一组数据的柱状图");//Description内容
+        barChart.setDescriptionPosition(760, 70);
+        barChart.setDescriptionTextSize(40);
         barChart.setNoDataText("数据为空，请传入数据！！！");
         barChart.setDrawGridBackground(false);//不画网格背景
         barChart.setTouchEnabled(true);//允许触摸
         barChart.setDragEnabled(true);//允许拖拽
         barChart.setScaleEnabled(true);//允许缩放
         barChart.setPinchZoom(false);//false，X、Y轴单独缩放
+        barChart.getAxisLeft().setAxisMinValue(0.0f);
 
         //配置图例
         Legend legend = barChart.getLegend();
         legend.setForm(Legend.LegendForm.CIRCLE);//图例颜色块形状
         legend.setFormSize(14);//颜色快大小
         legend.setTextSize(14);//图例字体
-        legend.setPosition(Legend.LegendPosition.ABOVE_CHART_CENTER);//图例位置
+        legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART_INSIDE);//图例位置
 
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//X轴位置
